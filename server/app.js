@@ -17,13 +17,13 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'blog', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'MellowBlog', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 if (!isProduction) {
   app.use(errorHandler());
 }
 
-mongoose.connect('mongodb://localhost/MellowBlog');
+mongoose.connect('mongodb://localhost:27017/MellowBlog');
 mongoose.set('debug', true);
 
 // Add models
@@ -61,4 +61,4 @@ app.use((err, req, res) => {
   });
 });
 
-const server = app.listen(8000, () => console.log('Server started on http://localhost:8000'));
+const server = app.listen(27017, () => console.log('Server started on http://localhost:27017'));
